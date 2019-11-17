@@ -1,0 +1,950 @@
+\PassOptionsToPackage{svgnames}{xcolor}
+\documentclass[12pt]{article}
+
+
+
+\usepackage[margin=0.1in]{geometry}  
+\usepackage{graphicx}             
+\usepackage{amsmath}              
+\usepackage{amsfonts}              
+\usepackage{framed}               
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage[nottoc]{tocbibind}
+\usepackage{bm}
+\usepackage{enumitem}
+
+ \newcommand{\im}{\mathrm{i}}
+  \newcommand{\diff}{\mathrm{d}}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0em}
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+\newcommand{\Res}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\theoremstyle{definition}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Ann}{Ann}
+\setcounter{tocdepth}{1}
+\begin{document}
+\twocolumn
+\title{Revision notes - MA3111}
+\author{Ma Hongqiang}
+%\clearpage
+\section{Complex Numbers}
+\begin{definition}[Complex Numbers]
+\normalfont Complex numbers are numbers of the form $z=x+iy$ with $x,y\in\mathbb{R}$.\\
+We denote the set of complex numbers by $\mathbb{C}:=\{x+iy\mid x,y\in\mathbb{R}\}$.\\
+For $z=x+iy$, wecan $x$ the \textbf{real part} of $z$ and $y$ the \textbf{imaginary part}. We usually write
+\[
+x=\Re z, \;\;\;y=\Im z
+\]
+If $y=0$, then $z$ is real. If $x=0$, then $z$ is purely imaginary. It is obvious that $\mathbb{R}\subset\mathbb{C}$.\\
+Two complex numbers are equal if and only if their real parts and imaginary parts are both equal.
+\end{definition}
+\begin{definition}[Addition, Subtraction, Multiplication]
+\normalfont
+For $z_1=x_1+iy_1$ and $z_2=x_2+iy_2$, we define 
+\begin{itemize}
+	\item Addition/Subtraction: $(x_1+iy_1) + (x_2+iy_2)= (x_1 + x_2) + i(y_1 + y_2)$
+	\item Multiplication: $(x_1+iy_1)\cdot (x_2+iy_2) = (x_1x_2-y_1y_2)+i(x_1y_2+y_1x_2)$.
+\end{itemize}
+\end{definition}
+\begin{theorem}
+\normalfont For any $z_1,z_2,z_3\in\mathbb{C}$, we have
+\begin{itemize}
+	\item Commutative law: $z_1 + z_2 = z_2 + z_1$, $z_1\cdot z_2 = z_2\cdot z_1$.
+	\item Associative law: $(z_1+z_2)+z_3 = z_1+(z_2+z_3)$, $(z_1\cdot z_2)\cdot z_3 = z_1\cdot(z_2\cdot z_3)$.
+\end{itemize}
+\end{theorem}
+\begin{definition}[Division]
+\normalfont For $z_1=x_1+iy_1$ and $z_2=x_2+iy_2\neq 0$, we have
+\[
+\frac{z_1}{z_2} = \frac{x_1x_2+y_1y_2}{x_2^2+y_2^2} + i\frac{y_1x_2-x_1y_2}{x_2^2+y_2^2}
+\]
+\end{definition}
+\begin{definition}[Modulus]
+\normalfont The modulus $|z|$ of a complex number $z=x+iy$ is the distance of $z$ from the origin $0$ in the complex plane:
+\[
+|z|=\sqrt{x^2 + y^2}
+\]
+\end{definition}
+\textbf{Remark}:
+\begin{itemize}
+	\item $|z|\geq 0$; $|z|=0\Leftrightarrow z=0$.
+	\item $|\Re z|\leq |z|$, $|\Im z|\leq |z|$.
+	\item Distance between $z_1$ and $z_2$ is $|z_1-z_2|$.
+\end{itemize}
+\begin{definition}[Complex Conjugate]
+\normalfont The \textbf{complex conjugate} $\bar{z}$ of a complex number $z=x+iy$ is defined by
+\[
+\bar{z}=x-iy
+\]
+\end{definition}
+\begin{theorem}[Consequences involving Complex Conjugate]
+\normalfont 
+\begin{itemize}
+	\item $\Re z= \frac{z+\bar{z}}{2}$.
+	\item $\Im z=\frac{z-\bar{z}}{2}$
+	\item $\overline{z_1 + z_2} = \bar{z}_1 + \bar{z}_2$.
+	\item $\overline{z_1\cdot z_2} = \bar{z}_1 \cdot \bar{z}_2$.
+	\item $\overline{\frac{z_1}{z_2}}=\frac{\bar{z}_1}{\bar{z}_2}$.
+	\item $z\bar{z}=|z|^2$.
+	\item $\frac{z_1}{z_2}=\frac{z_1\bar{z}_2}{|z_2|^2}$
+\end{itemize}
+\end{theorem}
+\begin{theorem}$|z_1z_2|=|z_1|\cdot |z_2|$.\end{theorem}
+\begin{theorem}[Triangle Inequality]
+\[||z_1|-|z_2||\leq |z_1\pm z_2|\leq |z_1|+|z_2|\]
+\end{theorem}
+\begin{definition}[Polar Form, Exponential Form]
+\normalfont Let $z=x+iy$, Then, with $(r, \theta)$ satisfying $x=r\cos\theta$ and $y=r\sin\theta$, we can write
+\[
+z=r(\cos\theta + i\sin\theta)
+\]
+We call the above expression \textbf{polar form} of $z$.\\
+We define $e^{i\theta}:=\cos\theta + i\sin\theta$. So we have
+\[
+z=re^{i\theta}
+\]
+We call the above expression the \textbf{exponential form} of $z$.\\
+Here, $r=\sqrt{x^2 + y^2}$, $\theta = \arctan \frac{y}{x} + (2n+1)\pi$.
+\end{definition}
+\begin{definition}[Argument]
+\normalfont Any real value that makes the polar form holds is called the \textbf{argument} of $z$. We have
+\[
+\arg z = \theta + 2n\pi, n\in\mathbb{Z}
+\]
+Due to this result, we define the general polar form of $z$ to be
+\[
+z=r[\cos(\theta + 2n\pi) + i\sin(\theta+ 2n\pi)], n = 0, \pm 1, \ldots
+\]
+and general exponential form as
+\[
+z=r\exp[i(\theta + 2n\pi)], n = 0, \pm 1, \ldots
+\]
+\end{definition}
+\begin{definition}[Principal Argument]
+\normalfont $\Arg z = \{x\mid x\in \arg z, -\pi<x\leq \pi\}$.
+\end{definition}
+\begin{theorem}$\arg(z_1z_2)=\arg(z_1) + \arg(z_2)$\end{theorem}
+\begin{theorem}[De Moivre's Formula] $(\cos \theta + i\sin \theta)^n = \cos n\theta + i\sin n\theta$\end{theorem}
+\begin{definition}[Principal {$n$}th root]
+\normalfont Principle $n$th root is the $n$th root of the principle argument.
+\end{definition}
+%\clearpage
+\section{Analytic Functions}
+\begin{definition}[Polynomial]
+\normalfont A polynomial in $z$ is a function of the form
+\[
+f(z)=a_0 + a_1z+ \cdots + a_nz^n
+\]
+with each $a_i \in \mathbb{C}$.
+\end{definition}
+\begin{definition}[Rational Function]
+\normalfont A rational function in $z$ is a function of the form $f(z)=\frac{p(z)}{q(z)}$, where $p$, $q$ are polynomial in $z$.
+\end{definition}
+\begin{definition}[Limits]
+\normalfont We write $\lim_{z\to z_0}f(z)=w_0$ if the following condition is satisfied: For any $\epsilon > 0$, there exists $\delta = \delta(\epsilon)>0$ such that 
+\[
+|f(z)-w_0|<\epsilon \text{ whenever }0<|z-z_0|<\delta
+\]
+\end{definition}
+\begin{theorem}[Limit of Real/Imaginary-Part Separable Function]
+\normalfont If $f(z)=u(x,y) + iv(x,y)$, $z_0 = x_0 + iy_0$ and $w_0 = u_0 + iv_0$, then
+\[
+\lim_{z\to z_0}f(z) = w_0 \Leftrightarrow \begin{cases}\lim_{(x,y)\to(x_0, y_0)}u(x,y) = u_0, \\
+\lim_{(x,y)\to(x_0, y_0)}v(x,y) = v_0\end{cases}
+\]
+\end{theorem}
+\begin{theorem}
+\normalfont If there are two curves $C_1$ and $C_2$ passing through $z_0$ such that
+\[
+\lim_{z\to z_0\text{ along }C_1}f(z)\neq \lim_{z\to z_0\text{ along }C_2}f(z)
+\]
+then $lim_{z\to z_0}f(z)$ does not exist.
+\end{theorem}
+\begin{theorem}\normalfont If $\lim_{z\to z_0}f(z)=w_1$ and $\lim_{z\to z_0}g(z)=w_2$, then
+\[
+\lim_{z\to z_0}[f(z)+g(z)]=w_1 + w_2, \;\;\;\lim_{z\to z_0}f(z)\cdot g(z) = w_1\cdot w_2
+\]
+and
+\[
+\lim_{z\to z_0}\frac{f(z)}{g(z)}=\frac{w_1}{w_2}\text{ if }g(z), w_2\neq 0
+\]
+\end{theorem}
+\subsection{Infinity}
+\begin{definition}[Extended Complex Plane]
+\normalfont $\mathbb{C}\cup\{\infty\}$ is called the extended complex plane.
+\end{definition}
+Definitions of limits involving infinity is similar to that of real limits, and is omitted.
+\subsection{Continuity}
+\begin{definition}[Continuous]
+\normalfont A complex-valued function $f(z)$ is continuous at $z_0$ if and only if $\lim_{z\to z_0}f(z) = f(z_0)$.
+\end{definition}
+\begin{theorem}[Some consequence]
+\normalfont 
+\begin{itemize}
+	\item If $f(z)=u(x,y)+iv(x,y)$, then $f(z)$ is continuous if and only if $u,v$ are continuous.
+	\item If $f(z), g(z)$ are continuous, then $f(z)\pm g(z)$, $f(z)\cdot g(z)$ are continuous at $z_0$.
+	\item Also, $\frac{f}{g}(z)$ is continuous at any $z_0$ where $g(z_0)\neq 0$.
+\end{itemize}
+\end{theorem}
+\subsection{Differentiation}
+\begin{definition}[Derivative]
+\normalfont The derivative of $f$ at $z_0$ is defined as
+\[
+\frac{\diff}{\diff z}f(z)|_{z=z_0} = f'(z_0):=\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}
+\]
+\end{definition}
+If $f'(z_0)$ exists, then we say $f$ is differentiable at $z_0$.
+\begin{theorem}\normalfont If $f(z)$ is differentiable at $z_0$, then $f(z)$ is continuous at $z_0$.
+\end{theorem}
+The differentiation rule of complex functions are similar to that of real functions.
+\subsection{Cauchy Riemann Equations}
+\begin{theorem}[A necessary condition for differentiability]
+\normalfont If $f(z)=u(x,y)+iv(x,y)$ is differentiable at $z_0 = x_0 + iy_0$, then $u$ and $v$ satisfy Cauchy Riemann equations at $(x_0, y_0)$ i,e,
+\[
+f'(z_0)=\frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x}=\frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}
+\]
+\end{theorem}
+\begin{theorem}[A Sufficient Condition for Differentiability]
+\normalfont Let $f(z)=u(x,y)+iv(x,y)$ be defined near the point $z_0 = x_0 + iy_0$. Suppose
+\begin{enumerate}
+	\item $u, v$ satisfies CR equations at $(x_0,y_0)$:\[
+u_x=v_y, u_y=-v_x
+	\]
+	\item $u_x,u_y,v_x,v_y$ continuous at $(x_0, y_0)$.
+\end{enumerate}
+Then $f$ is differentiable at $z_0$.
+\end{theorem}
+\subsection{Analytic Functions}
+\begin{definition}[Analytic Function]
+\normalfont We say $f$ is analytic at point $z_0$ if $f(z)$ differentiable everywhere in some open set $U$ containing $z_0$.\\
+We say $f$ is analytic in an open set $U$ if $f$ is differentiable everywhere in $U$.
+\end{definition}
+\begin{theorem}\normalfont If $f,g$ are analytic in open set $U$, so are $f+g, f-g, f\times g$, and $\frac{f}{g}$, with $U\setminus \{z\in U\mid g(z)=0\}$.\end{theorem}
+\begin{definition}[Entire function]
+\normalfont An \textbf{entire} function is a function which is analytic in $\mathbb{C}$.
+\end{definition}
+\begin{theorem}[Constant Analytic Function]
+\normalfont Let $f(z)$ be analytic in domain $D$. If $f'(z)=0$ on $D$, then $f(z)$ is constant in $D$.
+\end{theorem}
+\subsection{Harmonic Function}
+\begin{definition}[Laplace Equation]
+\normalfont Let $f(z)=u(x,y)+iv(x,y)$ be \textbf{analytic} in domain $D$. Then $u, v$ satisfies Laplace equation:
+\begin{align*}
+u_{xx}+u_{yy}&=0\\
+v_{xx}+v_{yy}&=0
+\end{align*}
+on $D$.
+\end{definition}
+\begin{definition}[Real Harmonic Function]
+\normalfont Let $D$ be a domain in $\mathbb{R}^2$. A function $u:D\to\mathbb{R}$ is said to be \textbf{harmonic} in $D\subset \mathbb{R}^2$ if
+\begin{enumerate}
+	\item $u$ has continuous first and second partial derivative
+	\item $u$ satisfies Laplace equation in $D$.
+\end{enumerate}
+\end{definition}
+\begin{definition}[Harmonic Conjugate]
+\normalfont Let $u,v$ be two harmonic functions in a domain $D$. We say $v$ is a \textbf{harmonic conjugate} of $u$ if
+\[
+u_x=v_y\text{  and  }u_y=-v_x\text{  on }D
+\]
+\end{definition}
+\begin{theorem}[Harmonic Conjugate composing Analytic Function]
+\normalfont Let $u$ be a harmonic function in domain $D$. Let $v$ be a harmonic conjugate of $u$. Then $f(z)=u+iv$ is an analytic function in $D$.
+\end{theorem}
+%\clearpage
+\section{Elementary Functions}
+\subsection{Exponential Function}
+\begin{definition}[Exponential Function]
+\normalfont Let $z=x+iy\in \mathbb{C}$,
+\[
+e^z = e^x(\cos y + i\sin y) = e^x e^{iy}
+\]
+\end{definition}
+It is worth noting $e^{2\pi i} = 1$, so the expoential function is periodic with period $2\pi i$.\\
+\begin{theorem}\[e^{z_1+z_2}=e^{z_1}e^{z_2}\]\end{theorem}
+\begin{theorem}[Modulus and Argument of Exponential Function]
+\normalfont $|e^z|=e^x$, and $\arg(e^z)=y+2n\pi, n\in \mathbb{Z}$.
+\end{theorem}
+\subsection{Logarithmic Function}
+\begin{definition}[Logarithmic Function]
+\normalfont We define, for $z\in\mathbb{C}\setminus\{0\}$,
+\[
+\log z = \ln |z| + i\arg z
+\]
+\end{definition}
+\begin{definition}[Principal Logarithmic Function]
+\normalfont 
+\[
+\Log z = \ln |z| + i\Arg z
+\]
+$\Log z$ has image $\{x+yi\mid x\in\mathbb{R}, y\in (-\pi, \pi]\}$.
+\end{definition}
+Note, that $\Log z$ is continuous on the \textbf{cut complex plane} $\mathbb{C}\setminus(-\infty, 0]$.
+\begin{theorem}[Principal Log is analytic on cut complex plane]
+\normalfont
+The function $\Log z$ is analytic on $\mathbb{C}\setminus(-\infty, 0]$, and
+\[
+\frac{\diff}{\diff z}\Log z = \frac{1}{z}
+\]
+for all $z$ in cut complex plane.
+\end{theorem}
+\begin{theorem}\[\log(z_1z_2) = \log z_1 + \log z_2\]\end{theorem}
+\begin{definition}[Complex Exponents]
+\normalfont For $z,c\in \mathbb{C}$ with $z\neq 0$, 
+\[
+z^c:=e^{c\log z}
+\]
+Note, $z^c$ is a multivalued function. So we define the \textbf{principal value of }$z^c$ to be $P.V. z^c=e^{c\Log z}$.
+\end{definition}
+\subsection{Trigonometric Function}
+\begin{definition}[Sine, Cosine]
+\normalfont For $z\in \mathbb{C}$,
+\[
+\cos z = \frac{e^{iz}+e^{-iz}}{2}\;\;\;\;\sin z =\frac{e^{iz}-e^{-iz}}{2i}
+\]
+\end{definition}
+We have, for $z=x+iy$, $|\sin z|^2 = \sinh^2 y + \sin^2 x$, and $|\cos z|^2 = \sinh^2 y + \cos^2 x$.\\
+We have $\sin(z+\pi) = -\sin z$, $\cos(z+\pi)=-\cos z$, and $\tan(z+\pi) = \tan z$.\\
+\begin{definition}[Hyperbolic Sine, Hyperbolic Consine]
+\normalfont For $z\in \mathbb{C}$, 
+\[
+\cosh x = \frac{e^z +e^{-z}}{2}\;\;\;\;\sinh z = \frac{e^z - e^{-z}}{2}
+\]
+\end{definition}
+We have, $\sinh z = i\sin(-iz)$, $\cosh = \cos(-iz)$, $\cosh^2 z - \sinh^2 z = 1$.
+\begin{definition}[Inverse Trigonometirc Function]
+\[
+\cos^{-1}z = -i\log(z+(z^2-1)^{1/2})
+\]
+\[
+\sin^{-1}z = -i\log(iz + (1-z^2)^{1/2})
+\]
+\[
+\tan^{-1}z = \frac{i}{2}\log\frac{i+z}{i-z}
+\]
+We have
+\[
+\frac{\diff}{\diff z}\cos^{-1}z = \frac{z}{(1-z^2)^{1/2}}
+\]
+\[
+\frac{\diff}{\diff z}\sin^{-1}z = \frac{1}{(1-z^2)^{1/2}}
+\]
+\[
+\frac{\diff}{\diff z}\tan^{-1}z = \frac{1}{1+z^2}
+\]
+\end{definition}
+%\clearpage
+\section{Contour Integration}
+\begin{definition}[Integration of Complex Function of a real variable]
+\normalfont Let $w:[a,b]\to \mathbb{C}$, and $t\in[a,b]$. Let $w(t)=u(t)+iv(t)$.\\
+\begin{itemize}
+	\item If $u'(t)$ and $v'(t)$ both exist, then we define
+	\[
+\frac{\diff }{\diff t}w(t) = w'(t):=u'(t)+iv'(t)
+	\]
+	\item If $u$ and $v$ are integrable on $[a,b]$, then we define
+	\[
+\int_a^b w(t)\diff t = \int_a^b u(t)\diff t + i\int_a^b v(t)\diff t
+	\]
+\end{itemize}
+\end{definition}
+\begin{theorem}
+\normalfont Let $w,w_1,w_2:[a,b]\to\mathbb{C}$ and $z_0\in \mathbb{C}$.
+\begin{itemize}
+	\item $\frac{\diff }{\diff t}[w_1(t) + w_2(t)]=w_1'(t)+w_2'(t)$
+	\item $\frac{\diff }{\diff t}[z_0w(t)]=z_0w'(t)$
+	\item $\int_a^b[w_1(t)+w_2(t)]\diff t = \int_a^b w_1(t)\diff t + \int_a^b w_2(t)\diff t$
+	\item $\int_a^b z_0w(t)\diff t = z_0\int_a^b w(t)\diff t$
+\end{itemize}
+\end{theorem}
+\begin{theorem}\normalfont If $w:[a,b]\to \mathbb{C}$, then
+\[
+\left|\int_a^b w(t)\diff t\right|\leq \int_a^b|w(t)|\diff t
+\]
+\end{theorem}
+\begin{theorem}[Fundamental Theorem of Calculus]
+\normalfont Suppose $F(t)$ and $f(t)$ continuous such that 
+\[
+F'(t)=f(t) (a\leq t \leq b)
+\]
+Then
+\[
+\int_a^b f(t)\diff t = F(b)- F(a)
+\]
+\end{theorem}
+\begin{definition}[Curve]
+\normalfont A \textbf{curve} in the complex plane is a continuous function
+\[
+\gamma:[a,b]\to\mathbb{C}
+\]
+That is if we write $\gamma(t)=x(t)+iy(t)$, then $x(t)$ and $y(t)$ are continuous on $[a,b]$.\\
+The set of points on $\gamma$ is called the \textbf{track} of $\gamma$.
+\end{definition}
+\begin{definition}[Simple, Closed, and Simple Closed curve]
+\normalfont $\gamma$ is simple if $t_1\neq t_2 \implies \gamma(t_1)\neq \gamma(t_2)$.\\
+$\gamma$ is closed if $\gamma(a) = \gamma(b)$.\\
+$\gamma$ is a simple closed curve if it is closed and $a\leq t_1 < t_2 < b \implies \gamma(t_1) \neq \gamma(t_2)$
+\end{definition}
+\begin{definition}[Smooth curve]
+\normalfont A curve $\gamma:[a,b]\to\mathbb{C}$ is smooth if 
+\begin{itemize}
+	\item $\gamma'(t)=x'(t)+iy'(t)$ exists and is continuous on $[a,b]$, and
+	\item $\gamma'(t)\neq 0$ for all $t\in [a,b]$.
+\end{itemize}
+\end{definition}
+\begin{definition}[Length of Curve]
+\normalfont Length of $\gamma$ equals 
+\[
+\int_a^b |\gamma'(t)|\diff t
+\]
+\end{definition}
+\begin{definition}[Integral of {$f$} along {$\gamma$}]
+\normalfont The integral of $f$ along $\gamma$ is defined by
+\[
+\int_\gamma f(z)\diff z = \int_a^b f(\gamma(t))\gamma'(t)\diff t
+\]
+\end{definition}
+\begin{theorem}[Reparametrization does not change integral value]
+\normalfont Let $\gamma:[a,b]\to\mathbb{C}$ be a smooth curve, and let $\phi:[c,d]\to [a,b]$ such that 
+\begin{itemize}
+	\item $\phi'(t)$ exists and is continuous on $[c,d]$, and
+	\item $\phi(c) = a, \phi(d) = b$
+\end{itemize}
+Define $\alpha(t)=\gamma(\phi(t)), c\leq t \leq d$, then for any function $f$ continuous on $\alpha = \gamma$,
+\[
+\int_\gamma f(z)\diff z = \int_\alpha f(z)\diff z
+\]
+\end{theorem}
+\begin{definition}[Opposite curve]
+Let $\gamma:[a,b]\to\mathbb{C}$ be a curve. Define opposite curve $-\gamma$ by
+\[
+(-\gamma)(t)=\gamma(-t), -b\leq t\leq -a
+\]
+We have, for any smooth curve $\gamma$, $\int_{-\gamma}f(z)\diff z = -\int_\gamma f(z)\diff z$
+\end{definition}
+\begin{definition}[Contour Integral]
+\normalfont If $f$ is continuous on $\gamma$, then we define contour integral of $f$ along $\gamma$ to be
+\[
+\int_\gamma f(z)\diff z = \sum_{j=1}^n\int_{\gamma_j}f(z)\diff z
+\]
+\end{definition}
+\begin{theorem}[ML Inequality]
+\normalfont Suppose that $f$ is continuous on an open set containing the track of a contour $\gamma$, and
+\[
+|f(z)|\leq M \text{ for all }z\in \gamma
+\]
+Then 
+\[
+|\int_\gamma f(z)\diff z|\leq ML
+\]
+where $L$ is the length of $\gamma$.
+\end{theorem}
+\subsection{Antiderivatives}
+\begin{definition}[Antiderivative]
+\normalfont Let $f$ be a continuous function on a domain $D$. A function $F$ such that
+\[
+F'(z)=f(z)\text{ for all }z\in D
+\]
+is called an \textbf{antiderivative} of $f$ in $D$.
+\end{definition}
+\begin{theorem}[Fundamental Theorem of Calculus For Contour Integrals]
+\normalfont Suppose $f$ has antiderivative $F$ on a domain $D$.
+\begin{enumerate}
+	\item If $z_1, z_2\in D$ and $\gamma$ a contour in $D$ joining $z_1$ to $z_2$, then
+	\[
+\int_\gamma f(z)\diff z = F(z_2)-f(z_1)
+	\]
+	This indicate the contour integral of such $f$ is path independent.
+	\item In particular, if $\gamma$ is closed in $D$, then $\int_\gamma f(z)\diff z = 0$.
+\end{enumerate}
+\end{theorem}
+\begin{theorem}Let $f$ be continuous on a domain $D$. The following are equivalent:
+\begin{enumerate}
+	\item $f$ has an antiderivative in $D$
+	\item For any closed contour $\gamma$ in $D$, $\int_\gamma f(z)\diff z= 0$.
+	\item The contour integral of $f$ are independent of paths in $D$, that is if $z_1, z_2\in D$, and $\gamma_1,\gamma_2$ are contours in $D$ joining $z_1$ to $z_2$ then
+	\[
+\int_{\gamma_1} f(z)\diff z = \int_{\gamma_2} f(z)\diff z
+	\]
+\end{enumerate}
+\end{theorem}
+\subsection{Cauchy-Goursat Theorem}
+\begin{theorem}[Jordan Curve Theorem]
+\normalfont Any simple closed contour $\gamma$ separates the plane into two domains, each having $\gamma$ as its boundary.
+\end{theorem}
+\begin{definition} \normalfont A simple closed contour $\gamma$ is positively oriented if the interior domain lies ot the left of an observer tracing out the points in order.
+\end{definition}
+\begin{theorem}[Cauchy Goursat]
+\normalfont If a function $f$ is analytic at all points interior to and on a simple closed contour $\gamma$, then
+\[
+\int_{\gamma}f(z)\diff z = 0
+\]
+\end{theorem}
+\begin{theorem}\normalfont Let $\gamma_1$ and $\gamma_2$ be positively oriented simple closed contours with $\gamma_2$ interior to $\gamma_1$. If $f$ is analytic on the closed region containing $\gamma_1$ and $\gamma_2$ and the points between them, then
+\[
+\int_{\gamma_1}f(z)\diff z = \int_{\gamma_2}f(z)\diff z
+\]
+\end{theorem}
+\begin{definition}[Simple Connected Domain]
+\normalfont A domain $D$ is \textbf{simply connected} if every simple closed contour in $D$ encloses only points in $D$.
+\end{definition}
+\begin{theorem}[Cauchy Roursat Theorem For Simply Connected Domain]
+\normalfont If $f$ is analytic is a simply connected domain $D$, then
+\[
+\int_{\gamma}f(z)\diff z = 0
+\]
+for every closed contour $\gamma$ in $D$.
+\end{theorem}
+\subsection{Cauchy Integral Formula}
+\begin{definition}[Cauchy Integral Formula]
+\normalfont Let $\gamma$ be a positively oriented simple closed contour and let $f$ be analytic everywhere within and on $\gamma$. Then for any $z_0$ interior to $\gamma$,
+\[
+f(z_0)=\frac{1}{2\pi i}\int_{\gamma}\frac{f(z)}{z-z_0}\diff z
+\]
+\end{definition}
+\begin{theorem}[Cauchy Integral Formula for Derivatives]
+\normalfont Let $f(z)$ be analytic everywhere inside and on a positively oriented simple closed contour $\gamma$. Then for any $z_0$ inside $\gamma$, and any integer $n\geq 1$, $f^{(n)}(z_0)$ exists, and
+\[
+f^{(n)}(z_0)=\frac{n!}{2\pi i}\int_{\gamma}\frac{f(z)}{(z-z_0)^{n+1}}\diff z
+\]
+\end{theorem}
+\begin{theorem}\normalfont If $f$ is analytic in domain $D$, then all its derivative exists and are analytic in $D$.
+\end{theorem}
+\begin{theorem}[Morera]
+\normalfont If $f$ continuous on a domain $D$, and
+\[
+\int_{\gamma}f(z)\diff z = 0
+\]
+for every closed contour $\gamma$ in $D$, then $f$ is analytic in $D$.
+\end{theorem}
+\subsection{Cauchy's Inequality}
+\begin{theorem}[Cauchy's Inequality]
+\normalfont Let $f(z)$ be analytic within and on the circle $\gamma_R$ centred at $z_0$ and of radius $R$($R>0$). Write $M_R=\max_{z\in\gamma_{R}}|f(z)|$. Then for any integer $n\geq 1$, we have
+\[
+|f^{(n)}(z_0)|\leq \frac{n!M_R}{R^n}
+\]
+\end{theorem}
+\begin{definition}[Bounded]
+\normalfont Let $S\subset \mathbb{C}$. A function $f:S\to \mathbb{C}$ is \textbf{bounded} if there exists some $K>0$ such that
+\[
+|f(z)|\leq K \text{ for all }z\in S
+\]
+\end{definition}
+\begin{definition}[Liouville]
+\normalfont If an entire function $f$ is bounded, then it must be a constant function.
+\end{definition}
+\begin{theorem}[Fundamental Theorem of Algebra]
+\normalfont If $p(z)=z^n + a_{n-1}z^{n-1}+ \cdots + a_1z + a_0$, then $p(z)=0$ has a solution in $\mathbb{C}$.
+\end{theorem}
+\begin{definition}
+\begin{itemize}
+	\item A subset $S$ of $\mathbb{C}$ is said to be closed if $\mathbb{C}\setminus S$ is open.
+	\item A subset $S$ of $\mathbb{C}$ is said to be bounded if there exists a number $K>0$ such that 
+\[
+|z|\leq K \text{ for all }z\in S
+\]
+\end{itemize}
+\end{definition}
+\begin{theorem}[Extreme Value Theorem]
+\normalfont Let $S$ be a non-empty closed bounded subset of $\mathbb{C}$, and let $g:S\to\mathbb{R}$ be a continuous function. Then there exists $z_1,z_2\in S$ such that $g(z_1)\leq g(z)\leq g(z_2)$ for all $z\in S$.
+\end{theorem}
+%\clearpage
+\section{Series Representation of Analytic Functions}
+\subsection{Sequences and Series of Complex Numbers}
+A sequence of complex number is an ordered list of complex numbers, denote dby $\{z_n\}_{n=1}^\infty$.
+\begin{definition}[Limit of Sequence]
+\normalfont A sequence $\{z_n\}$ has a limit $z$ if for any $\epsilon>0$, there exists $N=N(\epsilon)\in \mathbb{N}$ such that
+\[
+|z_n-z|< \epsilon \text{ whenever }n\geq N
+\]
+In this case, we say $\{z_n\}$ converges to $z$.
+\end{definition}
+If $\{z_n\}$ has no limit, then $\{z_n\}$ diverges.
+\begin{theorem}\normalfont If $z_n = x_n + iy_n$ for all $n$ and $z=x+iy$, then
+\[
+\lim_{n\to\infty}z_n = z \Leftrightarrow \lim_{n\to\infty} x_n = x \text{ and }\lim_{n\to\infty} y_n = y
+\]
+\end{theorem}
+\begin{theorem}\normalfont A convergent sequence $\{z_n\}$ has a unique limit.
+\end{theorem}
+\begin{theorem}\normalfont Let $\{z_n\}$ and $\{w_n\}$ be two convergent sequences of complex numbers, and let $\lim_{n\to\infty} z_n = z$ and $\lim_{n\to\infty} w_n = w$, then 
+\begin{itemize}
+	\item $\lim_{n\to\infty}(z_n + w_n) = z+w$
+	\item $\lim_{n\to\infty}(z_n - w_n) = z-w$
+	\item $\lim_{n\to\infty}(z_n\cdot w_n) = zw$
+	\item $\lim_{n\to\infty}\frac{z_n}{w_n}=\frac{z}{w}$ if $w\neq 0$ and each $w_n\neq 0$.
+\end{itemize}
+\end{theorem}
+\begin{definition}[Cauchy Sequence]
+\normalfont A sequence $\{z_n\}$ is called a Cauchy sequence if for any $\epsilon>0$, there exists $N=N(\epsilon)\in \mathbb{N}$ such that
+\[
+|z_n - z_m|<\epsilon\text{ whenever }n, m \geq N
+\]
+\end{definition}
+\begin{theorem}[Cauchy Criterion]
+\normalfont A sequence $\{z_n\}$ is convergent if and only if $\{z_n\}$ is a Cauchy sequence.
+\end{theorem}
+\begin{definition}[Series]
+\normalfont A series of complex numbers is of the form
+\[
+\sum_{n=1}^\infty z_n
+\]
+We define $S_n = \sum_{k=1}^n z_n$ to be the $n$th partial sum of the series, and we say $\sum_{n=1}^\infty z_n$ converges to $S$, if  $\lim_{n\to\infty}S_n = S$.\\
+If $\{S_n\}$ diverges, the the series diverges.
+\end{definition}
+\begin{theorem}
+\normalfont \begin{itemize}
+\item $\sum_{n=1}^\infty z_n = S$ if and only if $\sum_{n=1}^\infty x_n = X$ and $\sum_{n=1}^\infty y_n = Y$ where $z_n = x_n + iy_n$ and $S=X+iY$.
+\item That $\sum_{n=1}^\infty z_n$ converges implies $\lim_{n\to\infty}z_n = 0$
+\item If $\lim_{n\to\infty}z_n \neq 0$, or does not exist, then $\sum_{n=1}^\infty z_n$ diverges.
+\end{itemize}
+\end{theorem}
+\begin{definition}[Absolute Convergence]
+\normalfont If $\sum_{n=1}^\infty |z_n|$ converges, we say that $\sum_{n=1}^\infty z_n$ converges absolutely.\end{definition}
+\begin{theorem}\normalfont $\sum_{n=1}^\infty z_n$ converges absolutely implies $\sum_{n=1}^\infty z_n$ converges.\end{theorem}
+\subsection{Sequence and Series of Functions}
+A sequence of functions $\{f_n\}_{n=1}^\infty$ defined a set $D\subset \mathbb{C}$ in an ordered list of functions, where each $f_i:D\to \mathbb{C}$.
+\begin{definition}[Pointwise Convergence]
+\normalfont Let $\{f_n\}$ be a sequence of functions. Suppose for each $z\in D$, the sequence of complex numbers ${f_n(z)}$ converges. Then we can define a function $f:D\to\mathbb{C}$ given by
+\[
+f(z)=\lim_{n\to\infty}f_n(z)\text{ for all }z\in D
+\]
+And we say that ${f_n}$ \textbf{converges pointwise} to $f$ on $D$.
+\end{definition}
+\begin{definition}[Uniform Convergence]
+\normalfont We say a sequence $\{f_n\}$ converges uniformly to $f$ on $D$ if for any $\epsilon>0$, there exists $N=N(\epsilon)\in \mathbb{N}$, such that
+\[
+|f_n(z)-f(z)|<\epsilon \text{ for all }n>N \text{ and all }z\in D
+\]
+\end{definition}
+\begin{theorem}\normalfont Suppose $\{f_n\}$ converges uniformly to $f$ and $g$ bounded on $D$. Then $\{f_n\cdot g_n\}$ converges uniformly to function $f\cdot g$.
+\end{theorem}
+\begin{theorem}[Cauchy Criterion]
+\normalfont A sequence of functions $\{f_n\}$ converges uniformly on $D$ if and only if for any $\epsilon>0$, there exists $N=N(\epsilon)$ such that
+\[
+|f_n(z)-f_m(z)|<\epsilon \text{ for all }z\in D\text{ and all }m,n\geq N
+\]
+Note, here $N$ does not depend on $z$.
+\end{theorem}
+\begin{theorem}
+\normalfont Let $D\subset\mathbb{C}$, and $\{f_n\}$ be a sequence of functions on $D$ such that each $f_n$ is continuous on $D$. If $\{f_n\}$ converges uniformly to $f$ on $D$< then $f$ is also continuous on $D$.
+\end{theorem}
+\begin{theorem}\normalfont Let $\gamma$ be a contour and let $\{f_n\}$ be a sequence of continuous functions on the track of $\gamma$. If $\{f_n\}$ converges uniformly to $f$ on $\gamma$, then 
+\[
+\lim_{n\to\infty}\int_\gamma f_n(z)\diff z = \int_\gamma \lim_{n\to\infty}f_n(z)\diff z = \int_\gamma f(z)\diff z
+\]
+\end{theorem}
+\begin{theorem}\normalfont Let $\{f_n\}$ be a sequence of analytic functions on a domain $D$. If $\{f_n\}$ converges uniformly to $f$ on $D$, then $f$ is also analytic on $D$. Moreover,
+\[
+\lim_{n\to\infty}f_n^\ast(z)=f'(z)\text{ for all }z\in D
+\]
+\end{theorem}
+\begin{definition}[Series of Functions]
+\normalfont Let $D\subset \mathbb{C}$. An expression of the form 
+\[
+\sum_{k=1}^\infty f_k(z)=f_1(z)+\cdots, z\in D
+\]
+with each $f_k: D\to \mathbb{C}$, is said to be a \textbf{series of functions} on $D$.
+\end{definition}
+\begin{definition}[Partial Sum of Series of Functions]
+\normalfont The partial sum $\{S_n\}$ is given by
+\[
+S_n(z)=\sum_{k=1}^n f_k(z)
+\]
+\end{definition}
+We say that the series of fucntions \textbf{converges pointwise (resp. uniformly)} to a function $S$ on $D$ if its sequence of partial sums $\{S_n\}$ converges pointwise to $S$ on $D$.
+\begin{theorem}\normalfont Let $\gamma$ be a contour and let $\sum_{k=1}^\infty f_k(z)$ be a series of continuous functions converging uniformly on $\gamma$, then
+\[
+\sum_{n=1}^\infty \int_\gamma f_n(z)\diff z = \int_\gamma \sum_{n=1}^\infty f_n(z)\diff z
+\]
+\end{theorem}
+\begin{theorem}\normalfont Let $\sum_{k=1}^\infty f_k(z)$ be a series of analytic functions converging uniformly to some function $S(z)$ on a domain $D$. Then $S(z)=\sum_{k=1}^\infty f_k(z)$ is also analytic on $D$, and we have
+\[
+\frac{\diff }{\diff z}(\sum_{k=1}^\infty f_k(z))=S'(z)=\sum_{k=1}^\infty f'_k(z)\text{ for all }z\in D
+\]
+\end{theorem}
+\begin{theorem}[Weierstrass M-test]
+\normalfont Consider a series of functions $\sum_{k=1}^\infty f_k$ on a set $D\subset \mathbb{C}$. Suppose that
+\begin{itemize}
+	\item $|f_k(z)|\leq M_k$ for all $z\in D$, $k=1,2,\ldots $ and
+	\item $\sum_{k=1}^\infty M_k$ converges
+\end{itemize}
+Then $\sum_{k=1}^\infty f_k$ converges uniformly on $S$.
+\end{theorem}
+\subsection{Power Series}
+An expression of the form $\sum_{k=0}^\infty a_kz^k$ is called a \textbf{power series} in $z$.\\
+We can also form a power series in $z-z_0$.
+\begin{theorem}[Radius of Convergence]
+\normalfont Given any power series $\sum_{k=0}^\infty a_k(z-z_0)^k$, there is an associated number $R$, $0\leq R\leq \infty$, called the radius of convergence, witht the following properties:
+\begin{itemize}
+	\item The series of numbers $\sum_{k=0}^\infty a_k(z-z_0)^k$ converges absolutely at each $z\in B(z_0, R)$.
+	\item $\sum_{k=0}^\infty a_k(z-z_0)^k$ diverges at each $z$ satisfying $|z-z_0|>R$
+	\item The series of of functions $\sum_{k=0}^\infty a_k(z-z_0)^k$ converges uniformly on the closed ball $\overline{B(z_0, \rho)}$, for any $\rho$ satisfying $0<\rho<R$.
+\end{itemize}
+Moreover, $R$ is given by
+\[
+R=\frac{1}{\lim\sup_{k\to\infty} |a_k|^{1/k}}
+\]
+and is also given by
+\[
+R=\frac{1}{\lim_{k\to\infty}\frac{|a_{k+1}|}{|a_k|}} \text{ if }\lim_{k\to\infty} \frac{|a_{k+1}|}{|a_k|}\text{ exists}
+\]
+\end{theorem}
+\begin{theorem}\normalfont Given a power series $\sum_{k=0}^\infty a_k(z-z_0)^k$ with radius of convergence $R$, we have
+\[
+\sum_{k=0}^\infty a_k(z-z_0)^k\begin{cases}
+\text{converges pointwise} & \text{ on }B(z_0, R)\\
+\text{diverges} & \text{ whenever }|z-z_0|>R
+\end{cases}
+\]
+\end{theorem}
+\begin{theorem}\normalfont Let $\sum_{k=0}^\infty a_k(z-z_0)^k$ be a power series with radius of convergence $R$. Then
+\begin{enumerate}
+	\item $S(z)=\sum_{k=0}^\infty a_k(z-z_0)^k$ is an analytic function on $B(z_0, R)$.
+	\item Term by term differentiation: 
+	\[
+S'(z) = \frac{\diff }{\diff z}\sum_{k=0}^\infty a_k(z-z_0)^k = \sum_{k=1}^\infty k a_k (z-z_0)^{k-1}\text{ on }B(z_0, R)
+\]
+	\item Term by term integration: If $\gamma$ a contour in $B(z_0, R)$ and $g(z)$ continuous on $\gamma$< then
+	\[
+\int_\gamma g(z)S(z)\diff z = \int_\gamma g(z)\sum_{k=0}^\infty a_k(z-z_0)^k\diff z = \sum_{k=0}^\infty a_k\int_\gamma g(z)(z-z_0)^k\diff z
+	\]
+\end{enumerate}
+\end{theorem}
+\subsection{Taylor Series}
+\begin{theorem}[Taylor Theorem]
+\normalfont Suppose $f(z)$ is analytic in $B(z_0, R)$. Then
+\[
+f(z)=\sum_{k=0}^\infty \frac{f^{(k)}(z_0)}{k!}(z-z_0)^k, z\in B(z_0, R)
+\]
+The power series is called the Taylor series of $f(z)$ at $z_0$, and coefficients Taylor coefficients.
+\end{theorem}
+When $z_0 = 0$, Taylor series becomes the Maclaurin series of $f(z)$.\\
+When $f(z)$ entire, $R=\infty$.\\
+It follows that Taylor series has radius of convergence at least $R$, and it converges uniformly on the closed ball $\overline{B(z_0, \rho)}$ to $f$, whenever $0<\rho<R$.
+\begin{theorem}[Uniqueness of Taylor Series]
+\normalfont Let $f(z)$ be an analytic function on some domain containing $B(z_0, R)$, where $R>0$. If
+\[
+f(z)=\sum_{k=0}^\infty a_k(z-z_0)^k
+\]
+for all $z\in B(z_0, R)$, then that power series $\sum_{k=0}^\infty a_k (z-z_0)^k$ is the Taylor series of $f(z)$ at $z_0$, i.e.,
+\[
+a_k = \frac{f^{(k)}(z_0)}{k!}
+\]
+for all $k = 0,1,2,\ldots$.
+\end{theorem}
+\begin{theorem}[Multiplication/Division of Power Series]
+\normalfont Suppose 
+\[
+f(z)=\sum_{n=0}^\infty a_nz^n \text{ and } g(z)=\sum_{n=0}^\infty b_nz^n \text{ for }|z|<R
+\]
+then
+\begin{itemize}
+	\item $f(z)\cdot g(z) = (a_0 + a_1z + \cdots) (b_0 + b_1z + \cdots)$
+	\item If $g(0) \neq 0$, we may use long divison to find maclaurin seris of $\frac{f}{g}$.
+\end{itemize}
+\end{theorem}
+\subsection{Laurent Series}
+We introduce $\Ann(z_0, R_1, R_2):=\{z\in \mathbb{C} \mid R_1 < |z-z_0| < R_2\}$, and 
+$\overline{\Ann(z_0, R_1, R_2)}:= \{z\in \mathbb{C} \mid R_1 \leq |z-z_0| \leq R_2\}$.
+\begin{theorem}[Laurent Theorem]
+\normalfont Suppose $f(z)$ analytic in the annulus $\Ann(z_0, R_1, R_2)$, then
+\[
+f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n + \sum_{n=1}^\infty \frac{b_n}{(z-z_0)^n}, z\in \Ann(z_0, R_1, R_2)
+\]
+where 
+\[
+a_n = \frac{1}{2\pi i}\int_{\gamma}\frac{f(s)}{(s-z_0)^{n+1}}\diff s
+\]
+\[
+b_n = \frac{1}{2\pi i}\int_\gamma \frac{f(s)}{(s-z_0)^{-n+1}}\diff s
+\]
+\end{theorem}
+\begin{theorem}[Uniqueness of Laurent Series Representation]
+\normalfont If an analytic function $f$ in the annulus $Ann(z_0, R_1, R_2$ has its Laurent series, then the expression in previous theorem is the unique Laurent series of $f(z)$ for the annulus $Ann(z_0, R_1, R_2)$.
+\end{theorem}
+%\clearpage
+\section{Residues and Poles}
+\subsection{Residue}
+\begin{definition}[Residue]
+\normalfont A point $z_0$ is said to be a singlar point of a function $f$ if
+\begin{itemize}
+	\item $f$ is not analytic at $z_0$, but
+	\item $f$ is analytic at some point in $B(z_0, \epsilon)$ for all $\epsilon>0$
+\end{itemize}
+A singular point $z_0$ of $f$ is isolated if there exists $R>0$ such that $f$ is analytic in $B(z_0, R)\setminus \{z_0\}$.\\
+The residue of $f(z)$ at $z_0$ is
+\[
+\Res{z=z_0}f(z)=b_1
+\]
+\end{definition}
+\begin{theorem}\normalfont If $f$ analytic in $B(z_0, R)\setminus \{z_0\}$, then
+\[
+\int_\gamma f(z)\diff z = 2\pi i b_1 = 2\pi i\Res{z=z_0}f(z)
+\]
+where $\gamma$ is any positively oriented simple closed contour around $z_0$ in $B(z_0, R)\setminus \{z_0\}$.
+\end{theorem}
+\subsection{Cauchy's Residue Theorem}
+\begin{theorem}[Cauchy's Residue Theorem]
+\normalfont If $\gamma$ is a positively oriented simple closed contour and $f(z)$ is analytic everywhere inside and on $\gamma$ except for a finite number of singular points $z_k$ inside $\gamma$, then
+\[
+\int_\gamma f(z)\diff z = 2\pi i \sum_{k=1}^n \Res{z=z_k} f(z)
+\]
+\end{theorem}
+\subsection{Classification of Isolated Singular Points}
+\begin{definition}[Principal Part]
+\normalfont Suppose $f(z)$ has an isolated singular point at $z_0$. Consider Laurent series of $f(z)$ at $z_0$:
+\[
+f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n + \sum_{n=1}^\infty \frac{b_n}{(z-z_0)^n}, 0<|z-z_0|<R
+\]
+The second part $\sum_{n=1}^\infty \frac{b_n}{(z-z_0)^n}$ is called the \textbf{principal part} of $f(z)$ at $z_0$.
+\end{definition}
+We calssify isolated singular points into 3 kinds:
+\begin{itemize}
+	\item Removable singular points. If $b_n=0$ for all $n=1,2,\ldots$, we say that $z_0$ is a \textbf{removable singular points} of $f(z)$. In this case, $\Res{z=z_0}f(z)=0$.
+	\item Essential singular points. If $b_n\neq 0$ for infinitely many $n$, then we say $z_0$ is an essential singular point of $f(z)$.
+	\item Pole. If there exists $m\in \mathbb{N}$ such that $b_m\neq 0$ but $b_n=0$ for all $n>m$, then we say that $z_0$ is a \textbf{pole of order} $m$ for $f(z)$.
+\end{itemize}
+\begin{theorem}[Behaviour near Removable Singluar Point]
+\normalfont Suppose $f$ has removable singular point at $z_0$. We will have
+\[
+\lim_{z\to z_0}f(z) = a_0
+\]
+\end{theorem}
+\begin{theorem}[Behaviour near Pole]
+\normalfont Suppose $f$ has a pole of order $m$ at $z_0$. Then 
+\begin{enumerate}
+	\item There exists $R>0$ such that
+	\[
+f(z)=\frac{\phi(z)}{(z-z_0)^m}\text{ for }0<|z-z_0|<R
+	\]
+where $\phi(z)$ is analytic at $z_0$ and $\phi(z_0)\neq 0$.
+	\item In particular $\lim_{z\to z_0} f(z) = \infty$.
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[Behaviour near Essential Singular Point(Casorati-Weierstrass)]
+\normalfont Suppose $f(z)$ has an essential singular point at $z=z_0$. Then for each small $r>0$, the image $f(B(z_0, r)\setminus \{z_0\})$ is dense in $\mathbb{C}$.
+\end{theorem}
+\subsection{Pole Orders for Quotients of Analytic Functions}
+\begin{definition}[Zero of Order {$n$}]
+\normalfont We say analytic function $f(z)$ has zero of order $n$ at $z_0$ if
+\[
+f(z_0) = f^{(1)}(z_0) = \cdots f^{(n-1)}(z_0) = 0 \text{ and } f^{(n)}(z_0) \neq 0
+\]
+\end{definition}
+\begin{theorem}\normalfont Suppose $f_z$ has zero of order $n_1$ and $f_2$ has zero of order $n_2$ at some point $z_0$. THen the product $f_1\cdot f_2$ has zero of order $n_1 + n_2$ at $z_0$.
+\end{theorem}
+\begin{theorem}\normalfont Suppose an analytic function $f(z)$ has a zero of order $m$ at $z_0$. Ten there exists an analytic function $\phi(z)$ near $z_0$ such that
+\[
+f(z) =  (z-z_0)^m \phi(z) \text{ near }z_0, \text{ and }\phi(z_0)\neq 0
+\]
+\end{theorem}
+\begin{theorem}\normalfont Suppose $p(z)$ and $q(z)$ are analytic at $z_0$. Suppose that $p(z)$ has a zero of order $\alpha$ at $z_0$, and $q(z)$ has a zero of order $\beta$ at $z_0$. Consider the function
+\[
+f(z) = \frac{p(z)}{q(z)}
+\]
+\begin{enumerate}
+	\item If $\beta>\alpha$, then $\frac{p}{q}$ has a pole of order $\beta-\alpha$ at $z_0$.
+	\item If $\beta \leq \alpha$, then $\frac{p}{q}$ has a removable singular point at $z_0$.
+\end{enumerate}
+\end{theorem}
+In particular, one sees that quotients of analytic functions do not have essential singular points.
+\subsection{Methods for Computing Residues}
+\begin{theorem}[Method I]
+\normalfont Suppose $f(z)$ can be written in the form
+\[
+f(z)=\frac{\phi(z)}{z-z_0}\text{ near }z_0
+\]
+for some function $\phi(z)$ analytic at $z_0$. Then
+\[
+\Res{z=z_0}f(z)=\phi(z_0)
+\]
+\end{theorem}
+\begin{theorem}[Method II]
+\normalfont Suppose $f(z)$ can be written in the form
+\[
+f(z)=\frac{\phi(z)}{(z-z_0)^m}\text{ near }z_0
+\]
+for some function $\phi(z)$ analytic at $z_0$ and $m\geq 1$, Then
+\[
+\Res{z=z_0}f(z)=\frac{\phi^{(m-1)}(z_0)}{(m-1)!}
+\]
+\end{theorem}
+\begin{theorem}[Method III]
+\normalfont If $p(z)$ and $q(z)$ are analytic at $z_0$, and $q(z)$ has a simple zero at $z_0$, then
+\[
+\Res{z=z_0}\frac{p(z)}{q(z)} = \frac{p(z_0)}{q'(z_0)}
+\]
+\end{theorem}
+%\clearpage
+\section{Application of Residues}
+\subsection{Evaluation of Improper Real Integrals}
+Recall the following definition of improper real integrals:
+\[
+\int_0^\infty f(x)=\lim_{R\to\infty}\int_o^R f(x)\diff x
+\]
+also, 
+\[
+\int_{-\infty}^\infty f(x)\diff x = \lim_{R_1\to \infty}\int_0^{R_1}f(x)\diff x + \lim_{R_2\to\infty}\int_{-R_2}^0 f(x)\diff x
+\]
+There is also Cauchy Principle Value:
+\[
+\text{P.V.}\int_{-\infty}^\infty f(x)\diff x = \lim_{R\to\infty}\int_{-R}^R f(x)\diff x
+\]
+Note, if the improper integral converges, cauchy principal values also converges, and they equal.
+\begin{theorem}\normalfont Let $f:\mathbb{R}\to\mathbb{R}$ be an even function
+\[
+f(-x) = f(x)\text{ for all }x\in \mathbb{R}
+\]
+If $\text{P.V.} \int_{-\infty}^\infty f(x)\diff x$ converges, so does $\int_{-\infty}^\infty f(x)\diff x$ and we have
+\[
+\int_0^\infty f(x)\diff x = \frac{1}{2}\int_{-\infty}^\infty f(x)\diff x
+\]
+and
+\[
+\int_{-\infty}^\infty f(x)\diff x = \text{P.V.}\int_{-\infty}^\infty f(x)\diff x
+\]
+\end{theorem}
+\begin{theorem}
+\normalfont We describe a procedure to evaluate $\text{P.V.}\int_{-\infty}^\infty \frac{p(x)}{q(x)}\diff x$ where $p,q$ are polynomials in $x$ such that $\deg q(x)\geq \deg p(x) + 2$:
+\begin{enumerate}
+	\item Replace $x$ by $z$ to get $f(z)=\frac{p(z)}{q(z)}$
+	\item Write $\text{P.V.}\int_{-\infty}^\infty f(x)\diff x = \lim_{R\to\infty} \int_{-R}^R f(x)\diff x$
+	\item Draw a semi-circle $C_R$ in the upper half plane centered at $0$ and with diameter $[-R, R]$, and find singular points.
+	\item By residue theorem, we have $\int_{-R}^R f(x)\diff x + \int_{C_R}f(z)\diff z = 2\pi i\sum_{z_k}f(z)$
+	\item Letting $R\to\infty$. Try to show $\lim_{R\to\infty} \int_{C_R}f(z)\diff z =0$ by using ML.
+	\item Obtain $\text{P.V.}\int_{-\infty}^\infty f(x)\diff x$ by letting $R\to\infty$.
+\end{enumerate}
+\end{theorem}
+\subsection{Integrals of the form {$\int_{-\infty}^\infty f(x)\cos ax\diff x$ }}
+We are interested in computing integrals of the form
+\[
+\text{P.V.}\int_{-\infty}^\infty f(x)\cos ax\diff x \text{ or }\text{P.V.}\int_{-\infty}^\infty f(x)\sin ax\diff x
+\]
+Instead of computing these integrals directly, we often consider 
+\[
+\text{P.V.}\int_{-\infty}^\infty f(x)e^{iax} \diff x
+\]
+whose real and imaginary parts give values of the two improper integrals.
+\subsection{Definite Integrals Involving Sines and Cosines}
+We would like to compute integrals of the form
+\[
+\int_0^{2\pi} f(\cos\theta, \sin\theta)\diff \theta
+\]
+We can make the substitution $z=e^{i\theta}$, so that
+\[
+\int_0^{2\pi}f(\cos\theta, \sin\theta)\diff \theta = \int_\gamma f(\frac{z + z^{-1}}{2}, \frac{z-z^{-1}}{2i})\frac{\diff z}{iz}
+\]
+where $\gamma$ is the positively oriented unit circle $|z|=1$.
+\end{document}

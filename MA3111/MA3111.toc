@@ -1,0 +1,33 @@
+\contentsline {section}{\numberline {1}Complex Numbers}{2}
+\contentsline {section}{\numberline {2}Analytic Functions}{4}
+\contentsline {subsection}{\numberline {2.1}Infinity}{4}
+\contentsline {subsection}{\numberline {2.2}Continuity}{5}
+\contentsline {subsection}{\numberline {2.3}Differentiation}{5}
+\contentsline {subsection}{\numberline {2.4}Cauchy Riemann Equations}{5}
+\contentsline {subsection}{\numberline {2.5}Analytic Functions}{6}
+\contentsline {subsection}{\numberline {2.6}Harmonic Function}{6}
+\contentsline {section}{\numberline {3}Elementary Functions}{7}
+\contentsline {subsection}{\numberline {3.1}Exponential Function}{7}
+\contentsline {subsection}{\numberline {3.2}Logarithmic Function}{7}
+\contentsline {subsection}{\numberline {3.3}Trigonometric Function}{8}
+\contentsline {section}{\numberline {4}Contour Integration}{9}
+\contentsline {subsection}{\numberline {4.1}Antiderivatives}{11}
+\contentsline {subsection}{\numberline {4.2}Cauchy-Goursat Theorem}{11}
+\contentsline {subsection}{\numberline {4.3}Cauchy Integral Formula}{12}
+\contentsline {subsection}{\numberline {4.4}Cauchy's Inequality}{12}
+\contentsline {section}{\numberline {5}Series Representation of Analytic Functions}{14}
+\contentsline {subsection}{\numberline {5.1}Sequences and Series of Complex Numbers}{14}
+\contentsline {subsection}{\numberline {5.2}Sequence and Series of Functions}{15}
+\contentsline {subsection}{\numberline {5.3}Power Series}{17}
+\contentsline {subsection}{\numberline {5.4}Taylor Series}{18}
+\contentsline {subsection}{\numberline {5.5}Laurent Series}{18}
+\contentsline {section}{\numberline {6}Residues and Poles}{20}
+\contentsline {subsection}{\numberline {6.1}Residue}{20}
+\contentsline {subsection}{\numberline {6.2}Cauchy's Residue Theorem}{20}
+\contentsline {subsection}{\numberline {6.3}Classification of Isolated Singular Points}{20}
+\contentsline {subsection}{\numberline {6.4}Pole Orders for Quotients of Analytic Functions}{21}
+\contentsline {subsection}{\numberline {6.5}Methods for Computing Residues}{22}
+\contentsline {section}{\numberline {7}Application of Residues}{23}
+\contentsline {subsection}{\numberline {7.1}Evaluation of Improper Real Integrals}{23}
+\contentsline {subsection}{\numberline {7.2}Integrals of the form {$\DOTSI \intop \ilimits@ _{-\infty }^\infty f(x)\qopname \relax o{cos}ax\mathrm {d}x$ }}{24}
+\contentsline {subsection}{\numberline {7.3}Definite Integrals Involving Sines and Cosines}{24}

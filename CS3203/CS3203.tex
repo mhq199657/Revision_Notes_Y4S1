@@ -1,0 +1,143 @@
+\PassOptionsToPackage{svgnames}{xcolor}
+\documentclass[12pt]{article}
+
+
+
+\usepackage[margin=1in]{geometry}  
+\usepackage{algorithm,algpseudocode}
+\newcommand{\vars}{\texttt}
+\newcommand{\func}{\textrm}
+\usepackage{graphicx}             
+\usepackage{amsmath}              
+\usepackage{amsfonts}
+\usepackage{framed}               
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage[nottoc]{tocbibind}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }%
+\algtext*{Indent}
+\algtext*{EndIndent}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0em}
+\newcommand{\ind}{\hspace*{15pt}}
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{notation}{Notation}[section]
+\theoremstyle{definition}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\spn}{Span}
+\DeclareMathOperator{\diff}{d}
+\setcounter{tocdepth}{1}
+\begin{document}
+\title{Revision notes - CS3203}
+\author{Ma Hongqiang}
+\maketitle
+\tableofcontents
+
+\clearpage
+%\twocolumn
+\section{SIMPLE}
+\subsection{Language Syntax}
+\textsc{SIMPLE} is the target language of CS3203. \\
+We use suffix $+$ to denote $1$ to many. We use suffix $*$ to denote $0$ to many.\\
+We further define the following lexical tokens:
+\begin{itemize}
+	\item LETTER: A-Z $|$ a-z
+	\item DIGIT: 0-9
+	\item NAME: LETTER(LETTER | DIGIT)$*$
+	\item INTEGER: DIGIT$+$
+\end{itemize}
+Its \textbf{grammar} is defined as below:
+\begin{itemize}
+	\item \textbf{program}: procedure$+$
+	\item \textbf{procedure}: \texttt{procedure procedureName \{ }stmtLst\texttt{ \}}
+	\item \textbf{stmtLst}: statement$+$
+	\item \textbf{statement}: read $|$ print$|$ call $|$ while $|$ if $|$ assign
+	\item \textbf{read, print}(I/O): \texttt{read }\textit{variableName}\texttt{;}, \texttt{print }\textit{variableName}\texttt{;}
+	\item \textbf{call}(function call): \texttt{call }\textit{procedureName}\texttt{;}
+	\item \textbf{while}(loop): \texttt{while ( }cond\_expr\texttt{ ) \{ }stmtLst\texttt{ \}} 
+	\item \textbf{cond\_expr}: Can be one of the following forms. Note that cond\_expr requires bracketing \textit{always}.
+	\begin{itemize}
+		\item rel\_expr
+		\item \texttt{!( }cond\_expr\texttt{ )}
+		\item \texttt{( }cond\_expr\texttt{ )}
+		\item \texttt{( }cond\_expr\texttt{ ) \&\& ( }cond\_expr\texttt{ )}
+		\item \texttt{( }cond\_expr\texttt{ ) || ( }cond\_expr\texttt{ )}
+	\end{itemize}
+	\item \textbf{rel\_expr}: gt $|$ gte $|$ lt $|$ lte$|$ eq $|$ neq
+	\item \textbf{gt, gte, lt, lte, eq, neq}(=op): rel\_factor op rel\_factor
+	\item \textbf{rel\_factor}: \textit{variableName} $|$ \textit{constant} $|$ expr
+	\item \textbf{expr}: plus $|$ minus $|$ times $|$ div $|$ mod $|$ ref. Specifically, it is of the following forms:
+	\begin{itemize}
+		\item expr and term
+		\item expr minus term
+		\item term
+	\end{itemize}
+	\item \textbf{term}: One of the following forms:
+	\begin{itemize}
+		\item term times factor
+		\item term div factor
+		\item term mod factor
+		\item factor
+	\end{itemize}
+	\item \textbf{factor}: \textit{variableName} $|$ \textit{constant} $|$ \texttt{( }expr\texttt{ )}
+	\item \textbf{plus, minus, times, div, mod, ref}(=op): expr op expr
+	\item \textbf{ref}: \textit{variableName} $|$ \textit{constant}
+	\item \textbf{if}: \texttt{if ( }cond\_expr\texttt{ ) then \{ }stmtLst\texttt{ \} else \{} stmtLst\texttt{ \}}
+	\item \textbf{assign}: \textit{variableName}\texttt{ = } expr\texttt{;}
+	\item \textbf{variableName}, \textbf{procedureName}: NAME
+	\item \textbf{constant}: INTEGER
+\end{itemize}
+Note, we represent operators as such:
+\begin{itemize}
+	\item \textbf{and, or, not}: \texttt{\&\&}, \texttt{||}, \texttt{!}
+	\item \textbf{gt, gte, lt, lte, eq, neq}: \texttt{>}, \texttt{>=}, \texttt{<}, \texttt{<=}, \texttt{==}, \texttt{!=}
+	\item \textbf{plus, minus, times, div, mod}: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{\%}
+\end{itemize}
+\subsection{Programme Knowledge Base}
+\begin{definition}[Program Design Entities]
+\hfill\\\normalfont The following list contains all \textbf{programme design entities}:
+\begin{itemize}
+	\item procedure
+	\item stmtLst
+	\item stmt
+	\item read, print, assign, call, while, if
+	\item variable
+	\item constant
+\end{itemize}
+\end{definition}
+\begin{definition}[Programme Design Abstraction]
+\hfill\\\normalfont \textbf{Program design abstractions} are \textit{relationships} betwwen programme design entities.
+\end{definition}
+Following are 4 basic design abstractions:
+\begin{definition}[Follow]
+\hfill\\\normalfont For any statement $s_1, s_2$, 
+\begin{itemize}
+	\item \textbf{Follows}($s_1$, $s_2$) holds if they are at the same nesting level, in the same statement list, and $s_2$ appears \textit{immediately} after $s_1$.
+	\item \textbf{Follows}$^*$($s_1$, $s_2$) holds \textit{if} \textbf{Follows}($s_1$, $s_2$) \textit{or} \textbf{Follows}($s_1$, $s$) and \textbf{Follows}$^*$($s$, $s_2$) for some statement $s$.
+\end{itemize}
+\end{definition}
+\begin{definition}[Parent]
+\hfill\\\normalfont Forany statement $s_1, s_2$, 
+\begin{itemize} 
+	\item \textbf{Parent}($s_1$, $s_2$) holds if $s_2$ is directly nested in $s_1$.
+	\item \textbf{Parent}$^*$($s_1$, $s_2$) holds \textit{if} \textbf{Parent}($s_1$, $s_2$) \textit{or} \textbf{Parent}($s_1$, $s$) and \textbf{Parent}$^*$($s$, $s_2$) for some statement $s$.
+\end{itemize}
+\end{definition}
+\begin{definition}[Use]
+\hfill\\\normalfont 
+\end{definition}
+\end{document}

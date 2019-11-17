@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Regular Expressions and Automata}{2}
+\contentsline {section}{\numberline {2}Words}{5}
+\contentsline {section}{\numberline {3}N gram}{7}
+\contentsline {section}{\numberline {4}Part-of-speech Tagging}{10}
+\contentsline {section}{\numberline {5}Linear Models}{14}
+\contentsline {section}{\numberline {6}Feed-forward Neural Network}{16}
+\contentsline {section}{\numberline {7}Neural Language Model}{17}
+\contentsline {section}{\numberline {8}CNN}{20}
+\contentsline {subsection}{\numberline {8.1}Convolutional Neural Networks}{20}
+\contentsline {section}{\numberline {9}RNN}{23}
+\contentsline {subsection}{\numberline {9.1}Formal Grammars of English}{26}
+\contentsline {section}{\numberline {10}Syntactic Parsing}{31}
+\contentsline {section}{\numberline {11}Statistical Parsing}{35}
+\contentsline {section}{\numberline {12}Representation of Meaning}{38}
+\contentsline {section}{\numberline {13}Computational Semantics}{41}
+\contentsline {section}{\numberline {14}Lexical Semantics}{42}
+\contentsline {section}{\numberline {15}Computational Lexical Semantics}{44}
+\contentsline {section}{\numberline {16}Computational Discourse}{46}

@@ -1,0 +1,34 @@
+\contentsline {section}{\numberline {0}Introduction}{2}
+\contentsline {subsection}{\numberline {0.1}Return}{2}
+\contentsline {subsection}{\numberline {0.2}Geometric Random Walks}{3}
+\contentsline {subsection}{\numberline {0.3}Interest Rate}{3}
+\contentsline {section}{\numberline {1}Exploratory Data Analysis, Moments}{4}
+\contentsline {subsection}{\numberline {1.1}Useful Distribution}{4}
+\contentsline {subsection}{\numberline {1.2}Moments}{4}
+\contentsline {subsection}{\numberline {1.3}Quantile, Value At Risk, Expected Shortfall}{5}
+\contentsline {section}{\numberline {2}Multivariate Statictical Models}{9}
+\contentsline {section}{\numberline {3}Copula}{11}
+\contentsline {subsection}{\numberline {3.1}Commonly Used Copulas}{12}
+\contentsline {subsection}{\numberline {3.2}Tail Dependence of Bivariate Copula}{13}
+\contentsline {subsection}{\numberline {3.3}Empirical Copula}{13}
+\contentsline {subsection}{\numberline {3.4}Fitting Copula}{14}
+\contentsline {subsection}{\numberline {3.5}Monte Carlo Simulation}{14}
+\contentsline {section}{\numberline {4}CAPM}{16}
+\contentsline {subsection}{\numberline {4.1}Sharpe's Single Index Model}{16}
+\contentsline {subsection}{\numberline {4.2}CAPM}{17}
+\contentsline {subsection}{\numberline {4.3}Derivation of CAPM}{17}
+\contentsline {subsection}{\numberline {4.4}MultiFactor Models}{18}
+\contentsline {subsection}{\numberline {4.5}CAPM and Factor Models: Principal Component Analysis}{19}
+\contentsline {section}{\numberline {5}Financial Time Series}{21}
+\contentsline {subsection}{\numberline {5.1}Theoretical definitions of Time Series}{21}
+\contentsline {subsection}{\numberline {5.2}Sample ACVF, ACF}{23}
+\contentsline {subsection}{\numberline {5.3}Moving Average Model}{24}
+\contentsline {subsection}{\numberline {5.4}Autoregressive Model}{24}
+\contentsline {subsection}{\numberline {5.5}Parameter Estimation and Order Determination}{26}
+\contentsline {subsection}{\numberline {5.6}Prediction of Stationary Process}{27}
+\contentsline {section}{\numberline {6}Conditional Heteroscedastic Model}{28}
+\contentsline {subsection}{\numberline {6.1}GARCH Model}{30}
+\contentsline {subsection}{\numberline {6.2}GARCH-M MOdel}{31}
+\contentsline {subsection}{\numberline {6.3}APARCH Model}{31}
+\contentsline {subsection}{\numberline {6.4}Value At Risk Conditional on the Past}{31}
+\contentsline {subsection}{\numberline {6.5}Prediction of VaR}{31}
